@@ -16,6 +16,24 @@
       "message": "This method also does some verification which is entirely skipped here.",
       "revId": "84630c525378e28a82f48c0b8e4fd1400693f127",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d82f2765_b2635247",
+        "filename": "PrivateDnsConfiguration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-09-09T17:56:44Z",
+      "side": 0,
+      "message": "Only checking the values provided against an allowlist. No other verification that I can tell. This mechanism is what\u0027s blocking users from setting whatever they want. If they enter an invalid configuration AOSP already handles that scenario (connectivity broken, notification shown)",
+      "parentUuid": "9aa81e0d_711fd31c",
+      "revId": "84630c525378e28a82f48c0b8e4fd1400693f127",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
