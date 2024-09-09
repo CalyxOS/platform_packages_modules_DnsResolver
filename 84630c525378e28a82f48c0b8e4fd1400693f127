@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa81e0d_711fd31c",
+        "filename": "PrivateDnsConfiguration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-09-09T17:35:23Z",
+      "side": 0,
+      "message": "This method also does some verification which is entirely skipped here.",
+      "revId": "84630c525378e28a82f48c0b8e4fd1400693f127",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
