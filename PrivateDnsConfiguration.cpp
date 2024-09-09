@@ -650,15 +650,9 @@ void PrivateDnsConfiguration::clearDoh(unsigned netId) {
 
 base::Result<PrivateDnsConfiguration::DohIdentity> PrivateDnsConfiguration::makeDohIdentity(
         const std::vector<std::string>& servers, const std::string& name) const {
-    for (const auto& entry : mAvailableDoHProviders) {
-        const auto& dohId = entry.getDohIdentity(servers, name);
-        if (!dohId.ok()) continue;
-
-        // Since the DnsResolver is expected to be configured by the system server, add the
-        // restriction to prevent ResolverTestProvider from being used other than testing.
-        if (entry.requireRootPermission && AIBinder_getCallingUid() != AID_ROOT) continue;
-
-        return dohId;
+    const std::string httpsTemplate = "https://" + name + "/dns-query";
+    if (!servers.empty()) {
+        return DohIdentity{httpsTemplate, servers.front(), name, Validation::in_process};
     }
     return Errorf("Cannot make a DohIdentity from current DNS configuration");
 }
