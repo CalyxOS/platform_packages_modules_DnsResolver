@@ -49,6 +49,9 @@ using netdutils::DumpWriter;
 
 namespace net {
 
+// sync with system/netd/include/Fwmark.h enforceNetId bit position.
+constexpr static const uint32_t FWMARK_ENFORCE_NETID = 0x200000;
+
 namespace {
 
 void sendNat64PrefixEvent(const Dns64Configuration::Nat64PrefixInfo& args) {
@@ -210,8 +213,9 @@ int ResolverController::setResolverConfiguration(const ResolverParamsParcel& res
     // through a different network. For example, on a VPN with no DNS servers (Do53), if the VPN
     // applies to UID 0, dns_mark is assigned for default network rathan the VPN. (note that it's
     // possible that a VPN doesn't have any DNS servers but DoT servers in DNS strict mode)
+    uint32_t private_dns_mark = netcontext.app_mark | FWMARK_ENFORCE_NETID;
     auto& privateDnsConfiguration = PrivateDnsConfiguration::getInstance();
-    int err = privateDnsConfiguration.set(resolverParams.netId, netcontext.app_mark,
+    int err = privateDnsConfiguration.set(resolverParams.netId, private_dns_mark,
                                           resolverParams.servers, tlsServers,
                                           resolverParams.tlsName, resolverParams.caCertificate);
 
