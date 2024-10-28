@@ -69,6 +69,24 @@
       "parentUuid": "a45d4ed7_6e3e467e",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a78badf_47644580",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2024-10-28T17:48:33Z",
+      "side": 1,
+      "message": "It looks like this change doesn\u0027t accept a URL; it comes up with one on its own based on the typical URLs used. So, for example, we could have DoT available via `dns.calyxos.org` while also having DoH available via `https://dns.calyxos.org/dns-query`. This approach would try the latter first and use it if available, but previously it would only try DoT.\n\nThat has always bothered me about AOSP\u0027s presentation of Private DNS, because users may have a reason to prefer either DoT or DoH, and with Android, they don\u0027t really get a choice. The closest thing they\u0027ve had to a choice is to select something other than Google (or Cloudflare), in which case they\u0027re effectively choosing DoT. With this, it sounds like there\u0027s no choice, if both services use the same domain.",
+      "parentUuid": "4b881cf3_082ab1cd",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
