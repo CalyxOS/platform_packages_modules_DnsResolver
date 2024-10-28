@@ -51,6 +51,24 @@
       "message": "Does this force DoH, then - where available - in scenarios where DoT would have otherwise been used?",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b881cf3_082ab1cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-10-28T17:43:59Z",
+      "side": 1,
+      "message": "Not sure I understand. For DoH to be in effect, it has to follow its particular pattern. I don\u0027t see a case where DoT and DoH would be using the same URL?",
+      "parentUuid": "a45d4ed7_6e3e467e",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
