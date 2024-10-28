@@ -87,6 +87,24 @@
       "parentUuid": "4b881cf3_082ab1cd",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2455871_6df1f862",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-10-28T18:02:23Z",
+      "side": 1,
+      "message": "Right, if the same domain is used for both then it seems like DoH would be favoured over DoT since they both make use of the same UI",
+      "parentUuid": "6a78badf_47644580",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
