@@ -105,6 +105,24 @@
       "parentUuid": "6a78badf_47644580",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "486b2183_ad0fa5ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-29T12:05:49Z",
+      "side": 1,
+      "message": "So then this patch does force DoH, and thus it\u0027s not \"Allow all DoH providers\", and more \"Force DoH if available for provider\".\n\nThat\u0027s not good. But then again, we shouldn\u0027t change the basic Android UI, so that doesn\u0027t leave many good options here.",
+      "parentUuid": "b2455871_6df1f862",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
