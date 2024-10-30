@@ -141,6 +141,24 @@
       "parentUuid": "486b2183_ad0fa5ff",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2bf68e0_118193a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-30T15:26:13Z",
+      "side": 1,
+      "message": "Yes, I don\u0027t see any issues with that.\n\nNow:\nIf I put \u0027dns.google\u0027 -\u003e DoH / default AOSP behavior?\n\nProposed:\ndns.google -\u003e DoT\nhttps://dns.google/dns-query -\u003e DoH\n\nThat does change things wrt stock Android but making it clear in the process, which sounds ok.",
+      "parentUuid": "9d59daa8_32a55f85",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
