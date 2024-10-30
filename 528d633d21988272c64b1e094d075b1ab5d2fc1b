@@ -177,6 +177,24 @@
       "parentUuid": "9d59daa8_32a55f85",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84daf4a9_923da1cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-10-30T19:18:34Z",
+      "side": 1,
+      "message": "I\u0027ve tried allowing the UI in settings to allow a full URL rather than only domains. The problem is that all the underlying implementation between the UI and this modified section of the code also expects a domain and not a full URL. I haven\u0027t found all places where the domain would need to be extracted from the full URL yet, but keep in mind that supporting this would require changes across different repositories",
+      "parentUuid": "5780ac4d_0986eba3",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
