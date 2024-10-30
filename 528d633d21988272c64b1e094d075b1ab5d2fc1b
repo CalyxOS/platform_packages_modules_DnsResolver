@@ -123,6 +123,24 @@
       "parentUuid": "b2455871_6df1f862",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d59daa8_32a55f85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2024-10-30T14:33:32Z",
+      "side": 1,
+      "message": "The URL we are generating in this patch isn\u0027t part of [RFC 8484](https://datatracker.ietf.org/doc/html/rfc8484) - `/dns-query` is commonly used, but not guaranteed. Today, browsers that allow you to configure DoH require you to give them a full URL. See Mullvad\u0027s guide as an example: https://mullvad.net/en/help/dns-over-https-and-dns-over-tls#browsers\n\nSo, rather than guessing at the URL, couldn\u0027t we just accept a full URL, and then if the user-provided string starts with https://, use DoH with what they gave us?",
+      "parentUuid": "486b2183_ad0fa5ff",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
