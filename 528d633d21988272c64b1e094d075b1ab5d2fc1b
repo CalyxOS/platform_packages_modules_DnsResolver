@@ -159,6 +159,24 @@
       "parentUuid": "9d59daa8_32a55f85",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5780ac4d_0986eba3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-10-30T18:02:25Z",
+      "side": 1,
+      "message": "https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/DnsResolver/PrivateDnsConfiguration.cpp;l\u003d142;drc\u003dc5c9e7166fce4745b637526498adbede9d63317a;bpv\u003d0;bpt\u003d1\nDoT is favoured over DoH",
+      "parentUuid": "9d59daa8_32a55f85",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
