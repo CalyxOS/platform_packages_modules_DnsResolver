@@ -195,6 +195,24 @@
       "parentUuid": "5780ac4d_0986eba3",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91d1e22_51f7ab7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-10-31T15:29:15Z",
+      "side": 1,
+      "message": "So, I\u0027m wrong. DoH is favoured over DoT. It is considered an upgrade. It\u0027ll start by setting DoT. If it fails it doesn\u0027t even bother to set DoH. But if it succeeds, then whether DoH is used depends on if it fails or succeeds itself.\n\nPersonally given this patch does what it says it does, removes the restriction based on the allowlist and tries to use whatever domain the user used and upgrade it to DoH (current default AOSP behaviour), I\u0027d be in favour of merging it as-is and doing any further modifications to UX in subsequent patches",
+      "parentUuid": "84daf4a9_923da1cf",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
