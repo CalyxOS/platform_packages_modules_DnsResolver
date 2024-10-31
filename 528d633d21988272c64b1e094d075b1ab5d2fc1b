@@ -213,6 +213,24 @@
       "parentUuid": "84daf4a9_923da1cf",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a5dd1ff_1305ca40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-10-31T19:36:43Z",
+      "side": 1,
+      "message": "One way it could be made to work is to add a variable to https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/NetworkStack/common/networkstackclient/src/android/net/shared/PrivateDnsConfig.java;drc\u003d517003e1168f7d0e07cac9c60e67b73f0e28dbde;l\u003d34 tracking the full URL, which would be passed down to be used only where needed. Would probably require adding a parameter to https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/DnsResolver/ResolverController.cpp;l\u003d218;drc\u003d517003e1168f7d0e07cac9c60e67b73f0e28dbde;bpv\u003d1;bpt\u003d1\n\nNote that making changes to these may require changing \"platform APIs\" (@hide may not suffice)",
+      "parentUuid": "f91d1e22_51f7ab7b",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
