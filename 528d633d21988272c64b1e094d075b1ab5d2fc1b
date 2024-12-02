@@ -231,6 +231,24 @@
       "parentUuid": "f91d1e22_51f7ab7b",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc1d4c4c_8502bedc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-12-02T22:39:40Z",
+      "side": 1,
+      "message": "The comment above the previous one summarizes my take on this. If so, I don\u0027t think there are any remaining technical blockages?",
+      "parentUuid": "4a5dd1ff_1305ca40",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
