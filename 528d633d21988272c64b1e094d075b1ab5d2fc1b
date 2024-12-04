@@ -249,6 +249,24 @@
       "parentUuid": "4a5dd1ff_1305ca40",
       "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21ca39ed_d1c821f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-12-04T16:19:50Z",
+      "side": 1,
+      "message": "Ack, should summarise this discussion and clarify what this patch does in the commit message to make it clearer.",
+      "parentUuid": "bc1d4c4c_8502bedc",
+      "revId": "528d633d21988272c64b1e094d075b1ab5d2fc1b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
