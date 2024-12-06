@@ -34,6 +34,42 @@
       "parentUuid": "9aa81e0d_711fd31c",
       "revId": "84630c525378e28a82f48c0b8e4fd1400693f127",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ed8db15_16a2376f",
+        "filename": "PrivateDnsConfiguration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-12-06T21:33:27Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "d82f2765_b2635247",
+      "revId": "84630c525378e28a82f48c0b8e4fd1400693f127",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce2a393e_5c7c17c9",
+        "filename": "PrivateDnsConfiguration.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-12-06T21:33:27Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "d82f2765_b2635247",
+      "revId": "84630c525378e28a82f48c0b8e4fd1400693f127",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
