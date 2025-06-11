@@ -162,6 +162,10 @@ aidl_interface {
             version: "15",
             imports: ["netd_event_listener_interface-V1"],
         },
+        {
+            version: "16",
+            imports: ["netd_event_listener_interface-V1"],
+        },
 
     ],
     frozen: true,
@@ -423,7 +427,7 @@ doh_rust_deps = [
     "liblibc",
     "liblog_rust",
     "libring",
-    "libstatslog_rust",
+    "libstatslog_dns_resolver_rust",
     "libthiserror",
     "libtokio",
     "liburl",
@@ -505,7 +509,7 @@ rust_ffi_static {
         "liblog_rust",
         "libquiche_static",
         "libring",
-        "libstatslog_rust",
+        "libstatslog_dns_resolver_rust",
         "libthiserror",
         "libtokio",
         "liburl",

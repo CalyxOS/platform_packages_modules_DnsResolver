@@ -671,13 +671,14 @@ typedef int (*IsUidBlockedFn)(uid_t, bool);
 IsUidBlockedFn ADnsHelper_isUidNetworkingBlocked;
 
 IsUidBlockedFn resolveIsUidNetworkingBlockedFn() {
-    // Related BPF maps were mainlined from T.
-    if (!isAtLeastT()) return nullptr;
+    // Related BPF maps were mainlined from T, but we want to init on S too.
+    if (!isAtLeastS()) return nullptr;
 
     // TODO: Check whether it is safe to shared link the .so without using dlopen when the carrier
     // APEX module (tethering) is fully released.
     void* handle = dlopen("libcom.android.tethering.dns_helper.so", RTLD_NOW | RTLD_LOCAL);
     if (!handle) {
+        // Can happen if the tethering apex is ancient.
         LOG(WARNING) << __func__ << ": " << dlerror();
         return nullptr;
     }
@@ -685,14 +686,18 @@ IsUidBlockedFn resolveIsUidNetworkingBlockedFn() {
     InitFn ADnsHelper_init = reinterpret_cast<InitFn>(dlsym(handle, "ADnsHelper_init"));
     if (!ADnsHelper_init) {
         LOG(ERROR) << __func__ << ": " << dlerror();
-        // TODO: Change to abort() when NDK is finalized
-        return nullptr;
+        abort();
     }
     const int ret = (*ADnsHelper_init)();
     if (ret) {
+        // On S/Sv2 this can fail if tethering apex is too old, ignore it.
+        if (ret == -EOPNOTSUPP && !isAtLeastT()) return nullptr;
         LOG(ERROR) << __func__ << ": ADnsHelper_init failed " << strerror(-ret);
         abort();
     }
+
+    // Related BPF maps were only mainlined from T.
+    if (!isAtLeastT()) return nullptr;
 
     IsUidBlockedFn f =
             reinterpret_cast<IsUidBlockedFn>(dlsym(handle, "ADnsHelper_isUidNetworkingBlocked"));
@@ -886,7 +891,8 @@ void DnsProxyListener::GetAddrInfoHandler::doDns64Synthesis(int32_t* rv, addrinf
         mHints->ai_family = AF_INET;
         // Don't need to do freeaddrinfo(res) before starting new DNS lookup because previous
         // DNS lookup is failed with error EAI_NODATA.
-        *rv = resolv_getaddrinfo(host, service, mHints.get(), &mNetContext, res, event);
+        *rv = resolv_getaddrinfo(host, service, mHints.get(), &mNetContext, mClient->getSocket(),
+                                 res, event);
         if (*rv) {
             *rv = EAI_NODATA;  // return original error code
             return;
@@ -924,7 +930,8 @@ void DnsProxyListener::GetAddrInfoHandler::run() {
         const char* host = mHost.starts_with('^') ? nullptr : mHost.c_str();
         const char* service = mService.starts_with('^') ? nullptr : mService.c_str();
         if (evaluate_domain_name(mNetContext, host)) {
-            rv = resolv_getaddrinfo(host, service, mHints.get(), &mNetContext, &result, &event);
+            rv = resolv_getaddrinfo(host, service, mHints.get(), &mNetContext, mClient->getSocket(),
+                                    &result, &event);
             doDns64Synthesis(&rv, &result, &event);
         } else {
             rv = EAI_SYSTEM;
@@ -1135,7 +1142,8 @@ void DnsProxyListener::ResNSendHandler::run() {
         ansLen = -ECONNREFUSED;
     } else if (startQueryLimiter(uid)) {
         if (evaluate_domain_name(mNetContext, rr_name.c_str())) {
-            ansLen = resolv_res_nsend(&mNetContext, std::span(msg.data(), msgLen), ansBuf, &rcode,
+            ansLen = resolv_res_nsend(&mNetContext, mClient->getSocket(),
+                                      std::span(msg.data(), msgLen), ansBuf, &rcode,
                                       static_cast<ResNsendFlags>(mFlags), &event);
         } else {
             // TODO(b/307048182): It should return -errno.
@@ -1310,7 +1318,8 @@ void DnsProxyListener::GetHostByNameHandler::doDns64Synthesis(int32_t* rv, hoste
 
     // If caller wants IPv6 answers but no data, try to query IPv4 answers for synthesis
     const char* name = mName.starts_with('^') ? nullptr : mName.c_str();
-    *rv = resolv_gethostbyname(name, AF_INET, hbuf, buf, buflen, &mNetContext, hpp, event);
+    *rv = resolv_gethostbyname(name, AF_INET, hbuf, buf, buflen, &mNetContext, mClient->getSocket(),
+                               hpp, event);
     if (*rv) {
         *rv = EAI_NODATA;  // return original error code
         return;
@@ -1341,8 +1350,8 @@ void DnsProxyListener::GetHostByNameHandler::run() {
     } else if (startQueryLimiter(uid)) {
         const char* name = mName.starts_with('^') ? nullptr : mName.c_str();
         if (evaluate_domain_name(mNetContext, name)) {
-            rv = resolv_gethostbyname(name, mAf, &hbuf, tmpbuf, sizeof tmpbuf, &mNetContext, &hp,
-                                      &event);
+            rv = resolv_gethostbyname(name, mAf, &hbuf, tmpbuf, sizeof tmpbuf, &mNetContext,
+                                      mClient->getSocket(), &hp, &event);
             doDns64Synthesis(&rv, &hbuf, tmpbuf, sizeof tmpbuf, &hp, &event);
         } else {
             rv = EAI_SYSTEM;
@@ -1470,8 +1479,8 @@ void DnsProxyListener::GetHostByAddrHandler::doDns64ReverseLookup(hostent* hbuf,
 
     // Remove NAT64 prefix and do reverse DNS query
     struct in_addr v4addr = {.s_addr = v6addr.s6_addr32[3]};
-    resolv_gethostbyaddr(&v4addr, sizeof(v4addr), AF_INET, hbuf, buf, buflen, &mNetContext, hpp,
-                         event);
+    resolv_gethostbyaddr(&v4addr, sizeof(v4addr), AF_INET, hbuf, buf, buflen, &mNetContext,
+                         mClient->getSocket(), hpp, event);
     if (*hpp && (*hpp)->h_addr_list[0]) {
         // Replace IPv4 address with original queried IPv6 address in place. The space has
         // reserved by dns_gethtbyaddr() and netbsd_gethostent_r() in
@@ -1513,7 +1522,8 @@ void DnsProxyListener::GetHostByAddrHandler::run() {
             rv = EAI_SYSTEM;
         } else {
             rv = resolv_gethostbyaddr(&mAddress, mAddressLen, mAddressFamily, &hbuf, tmpbuf,
-                                      sizeof tmpbuf, &mNetContext, &hp, &event);
+                                      sizeof tmpbuf, &mNetContext, mClient->getSocket(), &hp,
+                                      &event);
             doDns64ReverseLookup(&hbuf, tmpbuf, sizeof tmpbuf, &hp, &event);
         }
         endQueryLimiter(uid);
